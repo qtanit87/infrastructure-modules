@@ -18,9 +18,9 @@ output "public_subnets_cidr_blocks" {
   value       = module.vpc.public_subnets_cidr_blocks
 }
 
-output "private_app_subnet_cidr_blocks" {
+output "private_subnets_cidr_blocks" {
   description = "The CIDR blocks of the private app subnets"
-  value       = module.vpc.private_app_subnets_cidr_blocks
+  value       = module.vpc.private_subnets_cidr_blocks
 }
 
 // output "private_persistence_subnet_cidr_blocks" {
