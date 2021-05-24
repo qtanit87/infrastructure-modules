@@ -31,7 +31,7 @@ module "vpc" {
   public_subnets  = var.public_subnets
 
   enable_nat_gateway = var.enable_nat_gateway
-  
+  enable_vpn_gateway = var.enable_vpn_gateway
 
 }
 
