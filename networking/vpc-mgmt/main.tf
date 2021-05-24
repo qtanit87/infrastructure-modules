@@ -9,15 +9,15 @@ provider "aws" {
   allowed_account_ids = [var.aws_account_id]
 }
 
-terraform {
+#terraform {
   # The configuration for this backend will be filled in by Terragrunt or via a backend.hcl file. See
   # https://www.terraform.io/docs/backends/config.html#partial-configuration
-  backend "s3" {}
+#  backend "s3" {}
 
   # Only allow this Terraform version. Note that if you upgrade to a newer version, Terraform won't allow you to use an
   # older version, so when you upgrade, you should upgrade everyone on your team and your CI servers all at once.
-  required_version = "= 0.12.6"
-}
+#  required_version = "= 0.12.6"
+#}
 
 module "vpc" {
   # Make sure to replace <VERSION> in this URL with the latest module-vpc release
@@ -31,7 +31,7 @@ module "vpc" {
   public_subnets  = var.public_subnets
 
   enable_nat_gateway = var.enable_nat_gateway
-  enable_nat_gateway = var.
+  
 
 }
 
