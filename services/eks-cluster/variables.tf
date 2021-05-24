@@ -18,7 +18,7 @@ variable "instance_type" {
   type        = string
 }
 
-variable "asg_max_size for cluster" {
+variable "asg_max_size" {
   description = "maximum worker node number"
   type        = number
   default     = 1
