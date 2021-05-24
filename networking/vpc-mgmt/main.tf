@@ -1,13 +1,13 @@
-provider "aws" {
-  # The AWS region in which all resources will be created
-  region = var.aws_region
+// provider "aws" {
+//   # The AWS region in which all resources will be created
+//   region = var.aws_region
 
-  # Require a 2.x version of the AWS provider
-  version = "~> 2.6"
+//   # Require a 2.x version of the AWS provider
+//   version = "~> 2.6"
 
-  # Only these AWS Account IDs may be operated on by this template
-  allowed_account_ids = [var.aws_account_id]
-}
+//   # Only these AWS Account IDs may be operated on by this template
+//   allowed_account_ids = [var.aws_account_id]
+// }
 
 #terraform {
   # The configuration for this backend will be filled in by Terragrunt or via a backend.hcl file. See
