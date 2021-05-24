@@ -42,3 +42,18 @@ output "private_subnets" {
 //   description = "The IDs of the private persistence subnets"
 //   value       = module.vpc.private_persistence_subnet_ids
 // }
+
+output "vpc_tags" {
+  description = "The tags of vpc"
+  value       = module.vpc.vpc_tags
+}
+
+output "public_subnet_tags" {
+  description = "The tags of public_subnet_tags"
+  value       = module.vpc.public_subnet_tags
+}
+
+output "private_subnet_tags" {
+  description = "The tags of private_subnet_tags"
+  value       = module.vpc.private_subnet_tags
+}
