@@ -23,3 +23,13 @@ variable "asg_max_size" {
   type        = number
   default     = 1
 }
+
+variable "ami_id" {
+  description = "ami_id for worker node"
+  type        = string
+}
+
+variable "key_name" {
+  description = "key_name for worker node"
+  type        = string
+}

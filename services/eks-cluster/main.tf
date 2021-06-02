@@ -21,10 +21,14 @@ module "my-cluster" {
   subnets         = var.subnets
   vpc_id          = var.vpc_id
 
+  
+
   worker_groups = [
     {
       instance_type = var.instance_type
       asg_max_size  = var.asg_max_size
+      ami_id = var.ami_id
+      key_name = var.key_name
     }
   ]
 }

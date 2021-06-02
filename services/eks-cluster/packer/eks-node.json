@@ -1,0 +1,47 @@
+{
+    "variables": {
+      "aws_region": "ap-southeast-1",
+      "github_auth_token": "{{env `GITHUB_OAUTH_TOKEN`}}",
+      "kubernetes_version": "1.13"
+    },
+    "builders": [{
+      "ami_name": "eks-cluster-instance-{{isotime | clean_ami_name}}",
+      "ami_description": "An Amazon EKS-optimized AMI that is meant to be run as part of an EKS cluster.",
+      "instance_type": "t2.micro",
+      "region": "{{user `aws_region`}}",
+      "type": "amazon-ebs",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "architecture": "x86_64",
+          "name": "amazon-eks-node-{{user `kubernetes_version`}}-v*",
+          "root-device-type": "ebs"
+        },
+        "owners": ["602401143452"],
+        "most_recent": true
+      },
+      "ssh_username": "ec2-user",
+      "encrypt_boot": false
+    }],
+    "provisioners": [{
+      "type": "shell",
+      "inline": [
+        "echo 'Sleeping for 30 seconds to give the AMIs enough time to initialize (otherwise, packages may fail to install).'",
+        "sleep 30",
+        "echo 'Installing AWS CLI'",
+        "sudo yum update -y && sudo yum install -y aws-cli unzip perl-Digest-SHA jq"
+      ]
+    },{
+      "type": "shell",
+      "inline": "curl -Ls https://raw.githubusercontent.com/gruntwork-io/gruntwork-installer/master/bootstrap-gruntwork-installer.sh | bash /dev/stdin --version v0.0.22"
+    },{
+      "type": "shell",
+      "inline": [
+        "gruntwork-install --module-name 'bash-commons' --repo 'https://github.com/gruntwork-io/bash-commons' --tag 'v0.1.2'"
+        
+      ],
+      "environment_vars": [
+        "GITHUB_OAUTH_TOKEN={{user `github_auth_token`}}"
+      ]
+    }]
+}

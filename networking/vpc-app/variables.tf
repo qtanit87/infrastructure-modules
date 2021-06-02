@@ -40,11 +40,11 @@ variable "enable_vpn_gateway" {
   default     = false
 }
 
-// variable "vpc_tags" {
-//   description = "Additional tags for the VPC"
-//   type        = map(string)
-//   default     = {}
-// }
+variable "vpc_tags" {
+  description = "Additional tags for the VPC"
+  type        = map(string)
+  default     = {}
+}
 
 // variable "public_subnet_tags" {
 //   description = "Additional tags for the public subnets"
@@ -52,8 +52,8 @@ variable "enable_vpn_gateway" {
 //   default     = {}
 // }
 
-// variable "private_subnet_tags" {
-//   description = "Additional tags for the private subnets"
-//   type        = map(string)
-//   default     = {}
-// }
+variable "private_subnet_tags" {
+  description = "Additional tags for the private subnets"
+  type        = map(string)
+  default     = {}
+}
