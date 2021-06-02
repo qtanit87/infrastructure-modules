@@ -26,7 +26,12 @@ module "my-cluster" {
   worker_groups = [
     {
       instance_type = var.instance_type
+      asg_min_size = var.asg_min_size
+      asg_desired_capacity = var.asg_desired_capacity
       asg_max_size  = var.asg_max_size
+      root_volume_size = var.root_volume_size
+      root_volume_type = var.root_volume_type
+      ebs_optimized = var.ebs_optimized
       ami_id = var.ami_id
       key_name = var.key_name
     }
