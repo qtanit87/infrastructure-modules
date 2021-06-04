@@ -18,22 +18,22 @@ variable "instance_type" {
   type        = string
 }
 
-variable "asg_max_size" {
+variable "max_capacity" {
   description = "maximum worker node number"
   type        = number
-  default     = 3
+  default     = 1
 }
 
-variable "asg_min_size" {
+variable "min_capacity" {
   description = "minimum worker node number"
   type        = number
-  default     = 3
+  default     = 1
 }
 
-variable "asg_desired_capacity" {
+variable "desired_capacity" {
   description = "desired worker node number"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "ami_id" {

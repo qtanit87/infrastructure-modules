@@ -10,10 +10,12 @@ module "vpc" {
   public_subnets  = var.public_subnets
 
   enable_nat_gateway = var.enable_nat_gateway
-  enable_vpn_gateway = var.enable_vpn_gateway
+  single_nat_gateway = var.single_nat_gateway
+  // enable_vpn_gateway = var.enable_vpn_gateway
+  enable_dns_hostnames = var.enable_dns_hostnames
 
-  vpc_tags = var.vpc_tags
-  // public_subnet_tags = var.public_subnet_tags
+  // vpc_tags = var.vpc_tags
+  public_subnet_tags = var.public_subnet_tags
   private_subnet_tags = var.private_subnet_tags
   
 

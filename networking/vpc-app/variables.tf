@@ -34,23 +34,29 @@ variable "enable_nat_gateway" {
   default     = false
 }
 
-variable "enable_vpn_gateway" {
-  description = "Should be true if you want to create a new VPN Gateway resource and attach it to the VPC"
+variable "single_nat_gateway" {
+  description = "single_nat_gateway"
   type        = bool
   default     = false
 }
 
-variable "vpc_tags" {
-  description = "Additional tags for the VPC"
-  type        = map(string)
-  default     = {}
+variable "enable_dns_hostnames" {
+  description = "enable_dns_hostnames"
+  type        = bool
+  default     = false
 }
 
-// variable "public_subnet_tags" {
-//   description = "Additional tags for the public subnets"
+// variable "vpc_tags" {
+//   description = "Additional tags for the VPC"
 //   type        = map(string)
 //   default     = {}
 // }
+
+variable "public_subnet_tags" {
+  description = "Additional tags for the public subnets"
+  type        = map(string)
+  default     = {}
+}
 
 variable "private_subnet_tags" {
   description = "Additional tags for the private subnets"
