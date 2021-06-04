@@ -18,14 +18,14 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster_name
   cluster_version = "1.20"
-  subnets         = var.subnets
-  vpc_id          = var.vpc_id
+  subnets         = data.terraform_remote_state.vpc.outputs.private_subnets
+  vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
 
   
 
   node_groups = {
     private = {
-      subnets          = var.subnets
+      subnets          = data.terraform_remote_state.vpc.outputs.private_subnets
       desired_capacity = var.desired_capacity
       max_capacity     = var.max_capacity
       min_capacity     = var.min_capacity
