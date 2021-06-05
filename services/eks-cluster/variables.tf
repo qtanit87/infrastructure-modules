@@ -8,15 +8,15 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "subnets" {
-  description = "A list of subnets to place the EKS cluster and workers within."
-  type        = list(string)
-}
+// variable "subnets" {
+//   description = "A list of subnets to place the EKS cluster and workers within."
+//   type        = list(string)
+// }
 
-variable "vpc_id" {
-  description = "VPC where the cluster and workers will be deployed."
-  type        = string
-}
+// variable "vpc_id" {
+//   description = "VPC where the cluster and workers will be deployed."
+//   type        = string
+// }
 
 variable "instance_type" {
   description = "instance_type for worker node"
