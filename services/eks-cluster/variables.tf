@@ -1,3 +1,8 @@
+variable "aws_region" {
+  description = "The AWS region in which all resources will be created"
+  type        = string
+}
+
 variable "cluster_name" {
   description = "Name of the EKS cluster. Also used as a prefix in names of related resources."
   type        = string
@@ -18,72 +23,74 @@ variable "instance_type" {
   type        = string
 }
 
-variable "max_capacity" {
+variable "asg_max_size" {
   description = "maximum worker node number"
   type        = number
   default     = 1
 }
 
-variable "min_capacity" {
+variable "asg_min_size" {
   description = "minimum worker node number"
   type        = number
   default     = 1
 }
 
-variable "desired_capacity" {
+variable "asg_desired_capacity" {
   description = "desired worker node number"
   type        = number
   default     = 1
 }
 
-variable "ami_id" {
-  description = "ami_id for worker node"
-  type        = string
-}
+// variable "ami_id" {
+//   description = "ami_id for worker node"
+//   type        = string
+// }
 
-variable "key_name" {
-  description = "key_name for worker node"
-  type        = string
-}
+// variable "key_name" {
+//   description = "key_name for worker node"
+//   type        = string
+// }
 
-variable "ebs_optimized" {
-  description = "ebs_optimized for worker node"
-  type        = bool
-  default     = false
-}
+// variable "ebs_optimized" {
+//   description = "ebs_optimized for worker node"
+//   type        = bool
+//   default     = false
+// }
 
-variable "root_volume_size" {
-  description = "root_volume_size for worker node"
-  type        = number
-  default     = 50
-}
+// variable "root_volume_size" {
+//   description = "root_volume_size for worker node"
+//   type        = number
+//   default     = 50
+// }
 
-variable "root_volume_type" {
-  description = "root_volume_type for worker node"
-  type        = string
-}
+// variable "root_volume_type" {
+//   description = "root_volume_type for worker node"
+//   type        = string
+// }
 
-variable "aws_region" {
-  description = "The AWS region in which all resources will be created"
-  type        = string
-}
 
-variable "aws_account_id" {
-  description = "The ID of the AWS Account in which to create resources."
-  type        = string
-}
 
-variable "vpc_name" {
-  description = "The name of the VPC in which to run the EKS cluster (e.g. stage, prod)"
-  type        = string
-}
+// variable "aws_account_id" {
+//   description = "The ID of the AWS Account in which to create resources."
+//   type        = string
+// }
+
+// variable "vpc_name" {
+//   description = "The name of the VPC in which to run the EKS cluster (e.g. stage, prod)"
+//   type        = string
+// }
 
 variable "terraform_state_aws_region" {
-  description = "The AWS region of the S3 bucket used to store Terraform remote state"
+  description = "The AWS region of the aws region used to store Terraform remote state"
   type        = string
 }
 
 variable "terraform_state_s3_bucket" {
   description = "The name of the S3 bucket used to store Terraform remote state"
+  type        = string
+}
+
+variable "terraform_state_environment" {
+  description = "The name of the env used to store Terraform remote state"
   type        = string
 }
