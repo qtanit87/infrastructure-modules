@@ -95,20 +95,10 @@ module "eks" {
   }  
 
   node_groups = {
-    // public = {
-    //   subnets          = data.terraform_remote_state.vpc.outputs.public_subnets
-    //   desired_capacity = var.asg_min_size
-    //   max_capacity     = var.asg_max_size
-    //   min_capacity     = var.asg_min_size
 
-    //   instance_type = var.instance_type
-    //   k8s_labels = {
-    //     Environment = "public"
-    //   }
-    // }
 
     private = {
-      subnets          = data.terraform_remote_state.vpc.outputs.private_subnets
+      //subnets          = data.terraform_remote_state.vpc.outputs.private_subnets
       desired_capacity = var.asg_min_size
       max_capacity     = var.asg_max_size
       min_capacity     = var.asg_min_size
