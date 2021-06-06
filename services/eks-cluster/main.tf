@@ -53,37 +53,49 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster_name
   cluster_version = "1.20"
-  subnets         = data.terraform_remote_state.vpc.outputs.private_subnets
+  subnets         = data.terraform_remote_state.vpc.outputs.public_subnets
   cluster_endpoint_private_access = true
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
 
   
 
-  // node_groups = {
-  //   private = {
-  //     subnets          = data.terraform_remote_state.vpc.outputs.private_subnets
-  //     desired_capacity = var.desired_capacity
-  //     max_capacity     = var.max_capacity
-  //     min_capacity     = var.min_capacity
+  node_groups = {
+    public = {
+      subnets          = data.terraform_remote_state.vpc.outputs.public_subnets
+      desired_capacity = var.desired_capacity
+      max_capacity     = var.max_capacity
+      min_capacity     = var.min_capacity
 
-  //     instance_type = var.instance_type
-  //     k8s_labels = {
-  //       Environment = "private"
-  //     }
-  //   }
-  // }
-
-  worker_groups = [
-    {
-      name                          = "worker-group-1"
-      instance_type                 = var.instance_type
-      asg_min_size                  = var.asg_min_size
-      asg_desired_capacity          = var.asg_desired_capacity
-      asg_max_size                  = var.asg_max_size      
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+      instance_type = var.instance_type
+      k8s_labels = {
+        Environment = "public"
+      }
     }
-  ]
-  worker_additional_security_group_ids = [aws_security_group.all_worker_mgmt.id]
+    // private = {
+    //   subnets          = data.terraform_remote_state.vpc.outputs.private_subnets
+    //   desired_capacity = var.desired_capacity
+    //   max_capacity     = var.max_capacity
+    //   min_capacity     = var.min_capacity
+
+    //   instance_type = var.instance_type
+    //   k8s_labels = {
+    //     Environment = "private"
+    //   }
+    // }
+  }
+
+  // worker_groups = [
+  //   {
+  //     name                          = "worker-group-1"
+  //     instance_type                 = var.instance_type
+  //     asg_min_size                  = var.asg_min_size
+  //     asg_desired_capacity          = var.asg_desired_capacity
+  //     asg_max_size                  = var.asg_max_size      
+  //     additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+  //   }
+  // ]
+  // worker_additional_security_group_ids = [aws_security_group.all_worker_mgmt.id]
+
   // root_volume_size              = var.root_volume_size
   // root_volume_type              = var.root_volume_type
   // ebs_optimized                 = var.ebs_optimized
